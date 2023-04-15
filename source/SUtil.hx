@@ -1,7 +1,7 @@
 package;
 
 #if android
-import android.AndroidTools;
+import android.Tools;
 import android.Permissions;
 #end
 import lime.app.Application;
@@ -17,7 +17,7 @@ class SUtil
 {
     #if android
     private static var aDir:String = null;
-    private static var sPath:String = AndroidTools.getExternalStorageDirectory();  
+    private static var sPath:String = Tools.getExternalStorageDirectory();  
     private static var grantedPermsList:Array<Permissions> = AndroidTools.getGrantedPermissions();  
     #end
 
@@ -42,13 +42,13 @@ class SUtil
     {
         #if android
         if (!grantedPermsList.contains(Permissions.READ_EXTERNAL_STORAGE) || !grantedPermsList.contains(Permissions.WRITE_EXTERNAL_STORAGE)) {
-            if (AndroidTools.getSDKversion() > 23 || AndroidTools.getSDKversion() == 23) {
-                AndroidTools.requestPermissions([Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE]);
+            if (Tools.getSDKversion() > 23 || Tools.getSDKversion() == 23) {
+                Tools.requestPermissions([Permissions.READ_EXTERNAL_STORAGE, Permissions.WRITE_EXTERNAL_STORAGE]);
             }  
         }
 
         if (!grantedPermsList.contains(Permissions.READ_EXTERNAL_STORAGE) || !grantedPermsList.contains(Permissions.WRITE_EXTERNAL_STORAGE)) {
-            if (AndroidTools.getSDKversion() > 23 || AndroidTools.getSDKversion() == 23) {
+            if (Tools.getSDKversion() > 23 || Tools.getSDKversion() == 23) {
                 SUtil.applicationAlert("Permissions", "If you accepted the permisions for storage, good, you can continue, if you not the game can't run without storage permissions please grant them in app settings" + "\n" + "Press Ok To Close The App");
             } else {
                 SUtil.applicationAlert("Permissions", "The Game can't run without storage permissions please grant them in app settings" + "\n" + "Press Ok To Close The App");
